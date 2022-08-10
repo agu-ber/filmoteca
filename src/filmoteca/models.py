@@ -8,6 +8,9 @@ class Pelicula(models.Model):
     genero = models.CharField(max_length=20)
     duracion = models.IntegerField()
     estreno = models.IntegerField()
+    
+    def __str__(self):
+        return f"{self.titulo}"
 
 class Director(models.Model):
     nombre = models.CharField(max_length=20) 
@@ -16,9 +19,16 @@ class Director(models.Model):
     cant_peliculas = models.IntegerField()
     esta_activo = models.BooleanField()
 
+    def __str__(self):
+        return f"{self.nombre} {self.apellido}"
+
 class Actor(models.Model):
     nombre = models.CharField(max_length=20) 
     apellido = models.CharField(max_length=30)
     fecha_nacimiento = models.DateField()
     pelicula_debut = models.CharField(max_length=60)
     esta_activo = models.BooleanField()
+
+    def __str__(self):
+        return f"{self.nombre} {self.apellido}"
+        

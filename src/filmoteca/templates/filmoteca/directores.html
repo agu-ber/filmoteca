@@ -1,0 +1,34 @@
+{% extends 'filmoteca/base2.html' %}
+
+{% block titulo %}Filmoteca - Directores{% endblock %}
+
+{% block header1 %}Directores{% endblock %}
+
+{% block header2 %}Los realizadores más consagrados de la historia{% endblock %}
+
+{% block lista %}
+
+    {% for director in directores %}
+        <div class="col mb-5">
+            <div class="card h-100">
+                <!-- Product details-->
+                <div class="card-body p-4">
+                    <div class="text-center">
+                        <!-- Datos de la película-->
+                        <h5 class="fw-bolder">{{director.nombre}} {{director.apellido}}</h5>
+                        <p>Nació el {{director.fecha_nacimiento}}</p>
+                        <p>Dirigió {{director.cant_peliculas}} películas</p>
+                        
+                        {% if director.esta_activo %}
+                            <p>Sigue activo</p>
+                        {% else %}
+                            <p>Está retirado</p>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock lista %}

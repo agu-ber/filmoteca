@@ -1,0 +1,29 @@
+{% extends 'filmoteca/base2.html' %}
+
+{% block titulo %}Filmoteca - Películas{% endblock %}
+
+{% block header1 %}Películas{% endblock %}
+
+{% block header2 %}Las mejores cintas de la última década{% endblock %}
+
+{% block lista %}
+
+    {% for pelicula in peliculas %}
+        <div class="col mb-5">
+            <div class="card h-100">
+                <!-- Product details-->
+                <div class="card-body p-4">
+                    <div class="text-center">
+                        <!-- Datos de la película-->
+                        <h5 class="fw-bolder">{{pelicula.titulo}}</h5>
+                        <p>Dirigida por {{pelicula.director}}</p>
+                        <p>Género de {{pelicula.genero}}</p>
+                        <p>{{pelicula.duracion}} minutos</p>
+                        <p>Estrenada en {{pelicula.estreno}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock lista %}

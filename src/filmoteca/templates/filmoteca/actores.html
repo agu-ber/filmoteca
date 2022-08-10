@@ -1,0 +1,34 @@
+{% extends 'filmoteca/base2.html' %}
+
+{% block titulo %}Filmoteca - Actores{% endblock %}
+
+{% block header1 %}Actores y actrices{% endblock %}
+
+{% block header2 %}Las estrellas de la gran pantalla{% endblock %}
+
+{% block lista %}
+
+    {% for actor in actores %}
+        <div class="col mb-5">
+            <div class="card h-100">
+                <!-- Product details-->
+                <div class="card-body p-4">
+                    <div class="text-center">
+                        <!-- Datos de la película-->
+                        <h5 class="fw-bolder">{{actor.nombre}} {{actor.apellido}}</h5>
+                        <p>Nació el {{actor.fecha_nacimiento}}</p>
+                        <p>Debutó en {{actor.pelicula_debut}}</p>
+                        
+                        {% if actor.esta_activo %}
+                            <p>Sigue activo</p>
+                        {% else %}
+                            <p>Está retirado</p>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock lista %}
