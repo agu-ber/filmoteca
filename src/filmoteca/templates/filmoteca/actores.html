@@ -6,6 +6,25 @@
 
 {% block header2 %}Las estrellas de la gran pantalla{% endblock %}
 
+{% block buscador %}
+
+    <form action="{% url 'actores_resultados' %}" method="GET">
+
+        <br>
+        <center>  
+            <p>
+                Apellido: 
+                <input type="text" name="apellido">
+            </p> 
+
+        <input type="submit" value="Buscar">
+
+        </center>
+        
+    </form>
+
+{% endblock buscador %}
+
 {% block lista %}
 
     {% for actor in actores %}
@@ -14,7 +33,7 @@
                 <!-- Product details-->
                 <div class="card-body p-4">
                     <div class="text-center">
-                        <!-- Datos de la película-->
+                        <!-- Datos del actor-->
                         <h5 class="fw-bolder">{{actor.nombre}} {{actor.apellido}}</h5>
                         <p>Nació el {{actor.fecha_nacimiento}}</p>
                         <p>Debutó en {{actor.pelicula_debut}}</p>

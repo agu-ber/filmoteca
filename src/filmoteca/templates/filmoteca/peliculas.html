@@ -6,6 +6,25 @@
 
 {% block header2 %}Las mejores cintas de la última década{% endblock %}
 
+{% block buscador %}
+
+    <form action="{% url 'peliculas_resultados' %}" method="GET">
+
+        <br>
+        <center>  
+            <p>
+                Título: 
+                <input type="text" name="titulo">
+            </p> 
+
+        <input type="submit" value="Buscar">
+
+        </center>
+        
+    </form>
+
+{% endblock buscador %}
+
 {% block lista %}
 
     {% for pelicula in peliculas %}

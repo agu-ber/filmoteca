@@ -33,6 +33,19 @@ def peliculas_añadir(request):
 
     return render(request, 'filmoteca/peliculas_añadir.html', {"formulario": formulario})
 
+def peliculas_resultados(request):
+
+    if request.GET["titulo"]:
+
+        busqueda = request.GET["titulo"]
+        peliculas = Pelicula.objects.filter(titulo__icontains=busqueda)
+
+        return render(request, 'filmoteca/peliculas_resultados.html', {"busqueda": busqueda, "peliculas": peliculas})
+
+    else:
+
+        return render(request, 'filmoteca/peliculas.html')
+
 def directores(request):
 
     lista_directores = Director.objects.all()
@@ -57,6 +70,19 @@ def directores_añadir(request):
 
     return render(request, 'filmoteca/directores_añadir.html', {"formulario": formulario})
 
+def directores_resultados(request):
+    
+    if request.GET["apellido"]:
+
+        busqueda = request.GET["apellido"]
+        directores = Director.objects.filter(apellido__icontains=busqueda)
+
+        return render(request, 'filmoteca/directores_resultados.html', {"busqueda": busqueda, "directores": directores})
+
+    else:
+
+        return render(request, 'filmoteca/directores.html')
+
 def actores(request):
 
     lista_actores = Actor.objects.all()
@@ -80,3 +106,16 @@ def actores_añadir(request):
             return render(request, 'filmoteca/index.html')
 
     return render(request, 'filmoteca/actores_añadir.html', {"formulario": formulario})
+
+def actores_resultados(request):
+
+    if request.GET["apellido"]:
+
+        busqueda = request.GET["apellido"]
+        actores = Actor.objects.filter(apellido__icontains=busqueda)
+
+        return render(request, 'filmoteca/actores_resultados.html', {"busqueda": busqueda, "actores": actores})
+
+    else:
+
+        return render(request, 'filmoteca/actores.html')

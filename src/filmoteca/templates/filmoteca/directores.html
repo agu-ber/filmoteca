@@ -6,6 +6,25 @@
 
 {% block header2 %}Los realizadores más consagrados de la historia{% endblock %}
 
+{% block buscador %}
+
+    <form action="{% url 'directores_resultados' %}" method="GET">
+
+        <br>
+        <center>  
+            <p>
+                Apellido: 
+                <input type="text" name="apellido">
+            </p> 
+
+        <input type="submit" value="Buscar">
+
+        </center>
+        
+    </form>
+
+{% endblock buscador %}
+
 {% block lista %}
 
     {% for director in directores %}
@@ -14,7 +33,7 @@
                 <!-- Product details-->
                 <div class="card-body p-4">
                     <div class="text-center">
-                        <!-- Datos de la película-->
+                        <!-- Datos del director-->
                         <h5 class="fw-bolder">{{director.nombre}} {{director.apellido}}</h5>
                         <p>Nació el {{director.fecha_nacimiento}}</p>
                         <p>Dirigió {{director.cant_peliculas}} películas</p>
