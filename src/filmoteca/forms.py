@@ -12,11 +12,11 @@ class DirectorFormulario(forms.Form):
     apellido = forms.CharField(max_length=30)
     fecha_nacimiento = forms.DateField()
     cant_peliculas = forms.IntegerField()
-    esta_activo = forms.BooleanField()
+    esta_activo = forms.BooleanField(required=False)
 
 class ActorFormulario(forms.Form):
     nombre = forms.CharField(max_length=20) 
     apellido = forms.CharField(max_length=30)
     fecha_nacimiento = forms.DateField()
     pelicula_debut = forms.CharField(max_length=60)
-    esta_activo = forms.BooleanField()
+    esta_activo = forms.BooleanField(required=False)
