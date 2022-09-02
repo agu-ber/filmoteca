@@ -1,0 +1,30 @@
+{% extends 'filmoteca/base_templates.html' %}
+
+{% block titulo %}Filmoteca - {{actor.nombre}} {{actor.apellido}}{% endblock %}
+
+{% block header1 %}Actores y actrices{% endblock %}
+
+{% block header2 %}Las estrellas de la gran pantalla{% endblock %}
+
+{% block contenido %}
+
+    <center>
+        <br>
+        <h2 class="fw-bolder">{{actor.nombre}} {{actor.apellido}}</h2>
+        <p>Nació el {{actor.fecha_nacimiento}}</p>
+        <p>Debutó en {{actor.pelicula_debut}}</p>
+                        
+        {% if actor.esta_activo %}
+            <p>Sigue activo</p>
+        {% else %}
+            <p>Está retirado</p>
+        {% endif %}
+            
+        <a href="{% url 'actores_editar' actor.id %}">Editar</a>
+        <a href="{% url 'actores_eliminar' actor.id %}">Eliminar</a>
+        <a href="{% url 'actores' %}">Regresar</a>
+    </center>
+
+    <br>
+    
+{% endblock contenido %}

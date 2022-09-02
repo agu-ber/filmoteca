@@ -15,14 +15,43 @@
     
 {% endblock boton %}
 
+{% block buscador %}
+
+    <form action="{% url 'peliculas_resultados' %}" method="GET">
+
+        <br>
+        <center>  
+            <p>
+                Título: 
+                <input type="text" name="titulo">
+            </p> 
+
+        <input type="submit" value="Buscar">
+
+        </center>
+        
+    </form>
+
+{% endblock buscador %}
+
 {% block mensaje %}
+    
+    {% if peliculas %}
 
-    <br>
-
+        <br>
         <center>
             <p>Resultados para: {{busqueda}}</p>
-        </center> 
+        </center>
 
+    {% else %}
+
+        <br>
+        <center>
+            <p>No hay resultados para: {{busqueda}}</p>
+        </center>
+
+    {% endif %}
+        
 {% endblock mensaje %}
 
 {% block lista %}      
@@ -38,10 +67,8 @@
                         <div class="text-center">
                             <!-- Datos de la película-->
                             <h5 class="fw-bolder">{{pelicula.titulo}}</h5>
-                            <p>Dirigida por {{pelicula.director}}</p>
-                            <p>Género de {{pelicula.genero}}</p>
-                            <p>{{pelicula.duracion}} minutos</p>
                             <p>Estrenada en {{pelicula.estreno}}</p>
+                            <a href="{% url 'peliculas_detail' pelicula.id %}">Ver detalle</a>
                         </div>
                     </div>
                 </div>
@@ -49,5 +76,5 @@
         {% endfor %}
 
     {% endif %}
-
+        
 {% endblock lista %}

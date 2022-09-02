@@ -22,7 +22,7 @@
         <br>
         <center>  
             <p>
-                Apellido: 
+                Apellido:
                 <input type="text" name="apellido">
             </p> 
 
@@ -35,8 +35,10 @@
 {% endblock buscador %}
 
 {% block lista %}
+    
+    {% if object_list %}
 
-    {% for director in directores %}
+    {% for director in object_list %}
         <div class="col mb-5">
             <div class="card h-100">
                 <!-- Product details-->
@@ -45,18 +47,20 @@
                         <!-- Datos del director-->
                         <h5 class="fw-bolder">{{director.nombre}} {{director.apellido}}</h5>
                         <p>Nació el {{director.fecha_nacimiento}}</p>
-                        <p>Dirigió {{director.cant_peliculas}} películas</p>
-                        
-                        {% if director.esta_activo %}
-                            <p>Sigue activo</p>
-                        {% else %}
-                            <p>Está retirado</p>
-                        {% endif %}
-
+                        <a href="{% url 'directores_detail' director.id %}">Ver detalle</a>
                     </div>
                 </div>
             </div>
         </div>
     {% endfor %}
+    
+    {% else %}
 
+        <br>
+        <center>
+            <p>No hay registros aún</p>
+        </center>
+
+    {% endif %}
+        
 {% endblock lista %}

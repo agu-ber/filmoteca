@@ -1,0 +1,25 @@
+{% extends 'filmoteca/base_templates.html' %}
+
+{% block titulo %}Filmoteca - {{pelicula.titulo}}{% endblock %}
+
+{% block header1 %}Películas{% endblock %}
+
+{% block header2 %}Las mejores cintas del siglo XXI{% endblock %}
+
+{% block contenido %}
+
+    <center>
+        <br>
+        <h2 class="fw-bolder">{{pelicula.titulo}}</h2>
+        <p>Dirigida por {{pelicula.director}}</p>
+        <p>Género de {{pelicula.genero}}</p>
+        <p>Dura {{pelicula.duracion}} minutos</p>
+        <p>Estrenada en {{pelicula.estreno}}</p>
+        <a href="{% url 'peliculas_editar' pelicula.id %}">Editar</a>
+        <a href="{% url 'peliculas_eliminar' pelicula.id %}">Eliminar</a>
+        <a href="{% url 'peliculas' %}">Regresar</a>
+    </center>
+
+    <br>
+    
+{% endblock contenido %}

@@ -35,23 +35,33 @@
 {% endblock buscador %}
 
 {% block lista %}
+    
+    {% if object_list %}
 
-    {% for pelicula in peliculas %}
-        <div class="col mb-5">
-            <div class="card h-100">
-                <!-- Product details-->
-                <div class="card-body p-4">
-                    <div class="text-center">
-                        <!-- Datos de la película-->
-                        <h5 class="fw-bolder">{{pelicula.titulo}}</h5>
-                        <p>Dirigida por {{pelicula.director}}</p>
-                        <p>Género de {{pelicula.genero}}</p>
-                        <p>{{pelicula.duracion}} minutos</p>
-                        <p>Estrenada en {{pelicula.estreno}}</p>
+        {% for pelicula in object_list %}
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Datos de la película-->
+                            <h5 class="fw-bolder">{{pelicula.titulo}}</h5>
+                            <p>Estrenada en {{pelicula.estreno}}</p>
+                            <a href="{% url 'peliculas_detail' pelicula.id %}">Ver detalle</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    {% endfor %}
 
+        {% endfor %}
+    
+    {% else %}
+
+        <br>
+        <center>
+            <p>No hay registros aún</p>
+        </center>
+
+    {% endif %}
+        
 {% endblock lista %}

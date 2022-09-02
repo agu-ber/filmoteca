@@ -1,0 +1,21 @@
+{% extends 'filmoteca/base_templates.html' %}
+
+{% block titulo %}Filmoteca - {{pelicula.titulo}}{% endblock %}
+
+{% block header1 %}Películas{% endblock %}
+
+{% block header2 %}Las mejores cintas del siglo XXI{% endblock %}
+
+{% block contenido %}
+
+    <br>
+    <center>
+        <form method="post">{% csrf_token %}
+            <p>Está por eliminar la película {{object}}. ¿Desea continuar?</p>
+            <input type="submit" value="Confirmar">
+            <a href="{% url 'peliculas' %}">Regresar</a>
+        </form>
+    </center>
+    <br>
+    
+{% endblock contenido %}

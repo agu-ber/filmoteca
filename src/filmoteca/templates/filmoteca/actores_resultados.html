@@ -15,14 +15,43 @@
     
 {% endblock boton %}
 
+{% block buscador %}
+
+    <form action="{% url 'actores_resultados' %}" method="GET">
+
+        <br>
+        <center>  
+            <p>
+                Apellido: 
+                <input type="text" name="apellido">
+            </p> 
+
+        <input type="submit" value="Buscar">
+
+        </center>
+        
+    </form>
+
+{% endblock buscador %}
+
 {% block mensaje %}
+    
+    {% if actores %}
 
-    <br>
-
+        <br>
         <center>
             <p>Resultados para: {{busqueda}}</p>
-        </center> 
+        </center>
 
+    {% else %}
+
+        <br>
+        <center>
+            <p>No hay resultados para: {{busqueda}}</p>
+        </center>
+
+    {% endif %}
+        
 {% endblock mensaje %}
 
 {% block lista %}      
@@ -39,14 +68,7 @@
                             <!-- Datos del actor-->
                             <h5 class="fw-bolder">{{actor.nombre}} {{actor.apellido}}</h5>
                             <p>Nació el {{actor.fecha_nacimiento}}</p>
-                            <p>Debutó en {{actor.pelicula_debut}}</p>
-                            
-                            {% if actor.esta_activo %}
-                                <p>Sigue activo</p>
-                            {% else %}
-                                <p>Está retirado</p>
-                            {% endif %}
-                            
+                            <a href="{% url 'actores_detail' actor.id %}">Ver detalle</a>
                         </div>
                     </div>
                 </div>

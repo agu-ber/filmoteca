@@ -1,0 +1,32 @@
+{% extends 'filmoteca/base.html' %}
+
+{% block titulo %}Filmoteca - Añadir director{% endblock %}
+
+{% block header1 %}Directores{% endblock %}
+
+{% block header2 %}Agregá a tus realizadores favoritos{% endblock %}
+
+{% block contenido %}
+
+    <br>
+
+    {% if form.errors %}
+        <p style="color: red">Ingresaste mal los datos. Intentalo de nuevo.</p>
+    {% endif %}
+
+    <center>
+        <form method="POST"> {% csrf_token %}
+            <table>
+                {{form.as_table}}  
+            </table>  
+            <br>
+            <input type="submit" value="Enviar">
+        </form>
+
+        <br>
+        <a href="{% url 'directores' %}">Regresar</a>
+    </center>    
+
+    <br>
+
+{% endblock %}

@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from filmoteca.models import *
 from filmoteca.forms import *
 
@@ -9,29 +10,38 @@ def index(request):
 
     return render(request, 'filmoteca/index.html')
 
-def peliculas(request):
 
-    lista_peliculas = Pelicula.objects.all()
+class PeliculaList(ListView):
 
-    return render(request, 'filmoteca/peliculas.html', {"peliculas": lista_peliculas})
+    model = Pelicula
+    template_name = "filmoteca/pelicula_list.html"
 
-def peliculas_añadir(request):
 
-    if request.method == 'GET':
-         formulario = PeliculaFormulario()
+class PeliculaDetail(DetailView):
+    
+    model = Pelicula
+    template_name = "filmoteca/pelicula_detail.html"
 
-    else:
-        formulario = PeliculaFormulario(request.POST)
 
-        if formulario.is_valid():
-            datos_limpios = formulario.cleaned_data
+class PeliculaCreate(CreateView):
 
-            pelicula = Pelicula(titulo=datos_limpios['titulo'], director=datos_limpios['director'], genero=datos_limpios['genero'], duracion=datos_limpios['duracion'], estreno=datos_limpios['estreno'])
-            pelicula.save()
+    model = Pelicula
+    success_url = "/filmoteca/peliculas"
+    fields = ['titulo', 'director', 'genero', 'duracion', 'estreno']
 
-            return render(request, 'filmoteca/index.html')
 
-    return render(request, 'filmoteca/peliculas_añadir.html', {"formulario": formulario})
+class PeliculaUpdate(UpdateView):
+
+    model = Pelicula
+    success_url = "/filmoteca/peliculas"
+    fields = ['titulo', 'director', 'genero', 'duracion', 'estreno']
+
+
+class PeliculaDelete(DeleteView):
+
+    model = Pelicula
+    success_url = "/filmoteca/peliculas"
+
 
 def peliculas_resultados(request):
 
@@ -46,29 +56,37 @@ def peliculas_resultados(request):
 
         return render(request, 'filmoteca/peliculas.html')
 
-def directores(request):
+class DirectorList(ListView):
 
-    lista_directores = Director.objects.all()
+    model = Director
+    template_name = "filmoteca/director_list.html"
 
-    return render(request, 'filmoteca/directores.html', {"directores": lista_directores})
 
-def directores_añadir(request):
+class DirectorDetail(DetailView):
+    
+    model = Director
+    template_name = "filmoteca/director_detail.html"
 
-    if request.method == 'GET':
-         formulario = DirectorFormulario()
 
-    else:
-        formulario = DirectorFormulario(request.POST)
+class DirectorCreate(CreateView):
 
-        if formulario.is_valid():
-            datos_limpios = formulario.cleaned_data
+    model = Director
+    success_url = "/filmoteca/directores"
+    fields = ['nombre', 'apellido', 'fecha_nacimiento', 'cant_peliculas', 'esta_activo']
 
-            director = Director(nombre=datos_limpios['nombre'], apellido=datos_limpios['apellido'], fecha_nacimiento=datos_limpios['fecha_nacimiento'], cant_peliculas=datos_limpios['cant_peliculas'], esta_activo=datos_limpios['esta_activo'])
-            director.save()
 
-            return render(request, 'filmoteca/index.html')
+class DirectorUpdate(UpdateView):
 
-    return render(request, 'filmoteca/directores_añadir.html', {"formulario": formulario})
+    model = Director
+    success_url = "/filmoteca/directores"
+    fields = ['nombre', 'apellido', 'fecha_nacimiento', 'cant_peliculas', 'esta_activo']
+
+
+class DirectorDelete(DeleteView):
+
+    model = Director
+    success_url = "/filmoteca/directores"
+
 
 def directores_resultados(request):
     
@@ -83,29 +101,38 @@ def directores_resultados(request):
 
         return render(request, 'filmoteca/directores.html')
 
-def actores(request):
 
-    lista_actores = Actor.objects.all()
+class ActorList(ListView):
 
-    return render(request, 'filmoteca/actores.html', {"actores": lista_actores})
+    model = Actor
+    template_name = "filmoteca/actor_list.html"
 
-def actores_añadir(request):
 
-    if request.method == 'GET':
-         formulario = ActorFormulario()
+class ActorDetail(DetailView):
+    
+    model = Actor
+    template_name = "filmoteca/actor_detail.html"
 
-    else:
-        formulario = ActorFormulario(request.POST)
 
-        if formulario.is_valid():
-            datos_limpios = formulario.cleaned_data
+class ActorCreate(CreateView):
 
-            actor = Actor(nombre=datos_limpios['nombre'], apellido=datos_limpios['apellido'], fecha_nacimiento=datos_limpios['fecha_nacimiento'], pelicula_debut=datos_limpios['pelicula_debut'], esta_activo=datos_limpios['esta_activo'])
-            actor.save()
+    model = Actor
+    success_url = "/filmoteca/actores"
+    fields = ['nombre', 'apellido', 'fecha_nacimiento', 'pelicula_debut', 'esta_activo']
 
-            return render(request, 'filmoteca/index.html')
 
-    return render(request, 'filmoteca/actores_añadir.html', {"formulario": formulario})
+class ActorUpdate(UpdateView):
+
+    model = Actor
+    success_url = "/filmoteca/actores"
+    fields = ['nombre', 'apellido', 'fecha_nacimiento', 'pelicula_debut', 'esta_activo']
+
+
+class ActorDelete(DeleteView):
+
+    model = Actor
+    success_url = "/filmoteca/actores"
+
 
 def actores_resultados(request):
 

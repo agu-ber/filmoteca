@@ -35,8 +35,10 @@
 {% endblock buscador %}
 
 {% block lista %}
+    
+    {% if object_list %}
 
-    {% for actor in actores %}
+    {% for actor in object_list %}
         <div class="col mb-5">
             <div class="card h-100">
                 <!-- Product details-->
@@ -45,18 +47,20 @@
                         <!-- Datos del actor-->
                         <h5 class="fw-bolder">{{actor.nombre}} {{actor.apellido}}</h5>
                         <p>Nació el {{actor.fecha_nacimiento}}</p>
-                        <p>Debutó en {{actor.pelicula_debut}}</p>
-                        
-                        {% if actor.esta_activo %}
-                            <p>Sigue activo</p>
-                        {% else %}
-                            <p>Está retirado</p>
-                        {% endif %}
-
+                        <a href="{% url 'actores_detail' actor.id %}">Ver detalle</a>
                     </div>
                 </div>
             </div>
         </div>
     {% endfor %}
+    
+    {% else %}
 
+        <br>
+        <center>
+            <p>No hay registros aún</p>
+        </center>
+
+    {% endif %}
+        
 {% endblock lista %}

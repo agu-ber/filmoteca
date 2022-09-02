@@ -15,14 +15,43 @@
     
 {% endblock boton %}
 
+{% block buscador %}
+
+    <form action="{% url 'directores_resultados' %}" method="GET">
+
+        <br>
+        <center>  
+            <p>
+                Apellido: 
+                <input type="text">
+            </p> 
+
+        <input type="submit" value="Buscar">
+
+        </center>
+        
+    </form>
+
+{% endblock buscador %}
+
 {% block mensaje %}
+    
+    {% if directores %}
 
-    <br>
-
+        <br>
         <center>
             <p>Resultados para: {{busqueda}}</p>
-        </center> 
+        </center>
 
+    {% else %}
+
+        <br>
+        <center>
+            <p>No hay resultados para: {{busqueda}}</p>
+        </center>
+
+    {% endif %}
+        
 {% endblock mensaje %}
 
 {% block lista %}      
@@ -39,14 +68,7 @@
                             <!-- Datos del director-->
                             <h5 class="fw-bolder">{{director.nombre}} {{director.apellido}}</h5>
                             <p>Nació el {{director.fecha_nacimiento}}</p>
-                            <p>Dirigió {{director.cant_peliculas}} películas</p>
-                            
-                            {% if director.esta_activo %}
-                                <p>Sigue activo</p>
-                            {% else %}
-                                <p>Está retirado</p>
-                            {% endif %}
-                            
+                            <a href="{% url 'directores_detail' director.id %}">Ver detalle</a>
                         </div>
                     </div>
                 </div>

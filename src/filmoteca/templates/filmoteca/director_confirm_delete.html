@@ -1,0 +1,21 @@
+{% extends 'filmoteca/base_templates.html' %}
+
+{% block titulo %}Filmoteca - {{director.nombre}} {{director.apellido}}{% endblock %}
+
+{% block header1 %}Directores{% endblock %}
+
+{% block header2 %}Los realizadores más consagrados de la historia{% endblock %}
+
+{% block contenido %}
+
+    <br>
+    <center>
+        <form method="post">{% csrf_token %}
+            <p>Está por eliminar el director {{object}}. ¿Desea continuar?</p>
+            <input type="submit" value="Confirmar">
+            <a href="{% url 'directores' %}">Regresar</a>
+        </form>
+    </center>
+    <br>
+    
+{% endblock contenido %}
