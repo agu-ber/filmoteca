@@ -15,7 +15,7 @@
     {% endif %}
 
     <center>
-        <form method="POST"> {% csrf_token %}
+        <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
             <table>
                 {{form.as_table}}  
             </table>  

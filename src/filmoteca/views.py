@@ -27,14 +27,14 @@ class PeliculaCreate(CreateView):
 
     model = Pelicula
     success_url = "/filmoteca/peliculas"
-    fields = ['titulo', 'director', 'genero', 'duracion', 'estreno']
+    fields = ['titulo', 'director', 'genero', 'duracion', 'estreno', 'poster']
 
 
 class PeliculaUpdate(UpdateView):
 
     model = Pelicula
     success_url = "/filmoteca/peliculas"
-    fields = ['titulo', 'director', 'genero', 'duracion', 'estreno']
+    fields = ['titulo', 'director', 'genero', 'duracion', 'estreno', 'poster']
 
 
 class PeliculaDelete(DeleteView):
@@ -72,14 +72,14 @@ class DirectorCreate(CreateView):
 
     model = Director
     success_url = "/filmoteca/directores"
-    fields = ['nombre', 'apellido', 'fecha_nacimiento', 'cant_peliculas', 'esta_activo']
+    fields = ['nombre', 'apellido', 'fecha_nacimiento', 'cant_peliculas', 'esta_activo', 'foto']
 
 
 class DirectorUpdate(UpdateView):
 
     model = Director
     success_url = "/filmoteca/directores"
-    fields = ['nombre', 'apellido', 'fecha_nacimiento', 'cant_peliculas', 'esta_activo']
+    fields = ['nombre', 'apellido', 'fecha_nacimiento', 'cant_peliculas', 'esta_activo', 'foto']
 
 
 class DirectorDelete(DeleteView):
@@ -118,14 +118,14 @@ class ActorCreate(CreateView):
 
     model = Actor
     success_url = "/filmoteca/actores"
-    fields = ['nombre', 'apellido', 'fecha_nacimiento', 'pelicula_debut', 'esta_activo']
+    fields = ['nombre', 'apellido', 'fecha_nacimiento', 'pelicula_debut', 'esta_activo', 'foto']
 
 
 class ActorUpdate(UpdateView):
 
     model = Actor
     success_url = "/filmoteca/actores"
-    fields = ['nombre', 'apellido', 'fecha_nacimiento', 'pelicula_debut', 'esta_activo']
+    fields = ['nombre', 'apellido', 'fecha_nacimiento', 'pelicula_debut', 'esta_activo', 'foto']
 
 
 class ActorDelete(DeleteView):
