@@ -1,6 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+
 from filmoteca.models import *
 from filmoteca.forms import *
 
@@ -23,24 +27,24 @@ class PeliculaDetail(DetailView):
     template_name = "filmoteca/pelicula_detail.html"
 
 
-class PeliculaCreate(CreateView):
+class PeliculaCreate(LoginRequiredMixin, CreateView):
 
     model = Pelicula
-    success_url = "/filmoteca/peliculas"
+    success_url = "/peliculas"
     fields = ['titulo', 'director', 'genero', 'duracion', 'estreno', 'poster']
 
 
-class PeliculaUpdate(UpdateView):
+class PeliculaUpdate(LoginRequiredMixin, UpdateView):
 
     model = Pelicula
-    success_url = "/filmoteca/peliculas"
+    success_url = "/peliculas"
     fields = ['titulo', 'director', 'genero', 'duracion', 'estreno', 'poster']
 
 
-class PeliculaDelete(DeleteView):
+class PeliculaDelete(LoginRequiredMixin, DeleteView):
 
     model = Pelicula
-    success_url = "/filmoteca/peliculas"
+    success_url = "/peliculas"
 
 
 def peliculas_resultados(request):
@@ -68,24 +72,24 @@ class DirectorDetail(DetailView):
     template_name = "filmoteca/director_detail.html"
 
 
-class DirectorCreate(CreateView):
+class DirectorCreate(LoginRequiredMixin, CreateView):
 
     model = Director
-    success_url = "/filmoteca/directores"
+    success_url = "/directores"
     fields = ['nombre', 'apellido', 'fecha_nacimiento', 'cant_peliculas', 'esta_activo', 'foto']
 
 
-class DirectorUpdate(UpdateView):
+class DirectorUpdate(LoginRequiredMixin, UpdateView):
 
     model = Director
-    success_url = "/filmoteca/directores"
+    success_url = "/directores"
     fields = ['nombre', 'apellido', 'fecha_nacimiento', 'cant_peliculas', 'esta_activo', 'foto']
 
 
-class DirectorDelete(DeleteView):
+class DirectorDelete(LoginRequiredMixin, DeleteView):
 
     model = Director
-    success_url = "/filmoteca/directores"
+    success_url = "/directores"
 
 
 def directores_resultados(request):
@@ -114,24 +118,24 @@ class ActorDetail(DetailView):
     template_name = "filmoteca/actor_detail.html"
 
 
-class ActorCreate(CreateView):
+class ActorCreate(LoginRequiredMixin, CreateView):
 
     model = Actor
-    success_url = "/filmoteca/actores"
+    success_url = "/actores"
     fields = ['nombre', 'apellido', 'fecha_nacimiento', 'pelicula_debut', 'esta_activo', 'foto']
 
 
-class ActorUpdate(UpdateView):
+class ActorUpdate(LoginRequiredMixin, UpdateView):
 
     model = Actor
-    success_url = "/filmoteca/actores"
+    success_url = "/actores"
     fields = ['nombre', 'apellido', 'fecha_nacimiento', 'pelicula_debut', 'esta_activo', 'foto']
 
 
-class ActorDelete(DeleteView):
+class ActorDelete(LoginRequiredMixin, DeleteView):
 
     model = Actor
-    success_url = "/filmoteca/actores"
+    success_url = "/actores"
 
 
 def actores_resultados(request):

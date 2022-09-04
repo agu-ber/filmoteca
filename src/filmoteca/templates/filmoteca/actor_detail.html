@@ -25,8 +25,9 @@
         <a href="{% url 'actores_editar' actor.id %}">Editar</a>
         <a href="{% url 'actores_eliminar' actor.id %}">Eliminar</a>
         <a href="{% url 'actores' %}">Regresar</a>
+        <p></p>
+        <p style="font-size: 11px">Creado el {{actor.creado}}</p>
+        <p style="font-size: 11px">Actualizado el {{actor.actualizado}}</p>
     </center>
-
-    <br>
     
 {% endblock contenido %}

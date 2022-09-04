@@ -15,13 +15,14 @@
         <img src="/media/{{pelicula.poster}}" height="300" width="200">
         <p></p>
         <p>Género de {{pelicula.genero}}</p>
-        <p>Dura {{pelicula.duracion}} minutos</p>
+        <p>{{pelicula.duracion}} minutos</p>
         <p>Estrenada en {{pelicula.estreno}}</p>
         <a href="{% url 'peliculas_editar' pelicula.id %}">Editar</a>
         <a href="{% url 'peliculas_eliminar' pelicula.id %}">Eliminar</a>
         <a href="{% url 'peliculas' %}">Regresar</a>
+        <p></p>
+        <p style="font-size: 11px">Creado el {{pelicula.creado}}</p>
+        <p style="font-size: 11px">Actualizado el {{pelicula.actualizado}}</p>
     </center>
-
-    <br>
     
 {% endblock contenido %}

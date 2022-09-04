@@ -9,6 +9,8 @@ class Pelicula(models.Model):
     duracion = models.IntegerField()
     estreno = models.IntegerField()
     poster = models.ImageField(upload_to="posters")
+    creado = models.DateTimeField(auto_now_add=True)
+    actualizado = models.DateTimeField(auto_now=True)
     
     def __str__(self):
         return f"{self.titulo}"
@@ -20,6 +22,8 @@ class Director(models.Model):
     cant_peliculas = models.IntegerField()
     esta_activo = models.BooleanField()
     foto = models.ImageField(upload_to="fotos_directores")
+    creado = models.DateTimeField(auto_now_add=True)
+    actualizado = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.nombre} {self.apellido}"
@@ -31,6 +35,8 @@ class Actor(models.Model):
     pelicula_debut = models.CharField(max_length=60)
     esta_activo = models.BooleanField()
     foto = models.ImageField(upload_to="fotos_actores")
+    creado = models.DateTimeField(auto_now_add=True)
+    actualizado = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.nombre} {self.apellido}"

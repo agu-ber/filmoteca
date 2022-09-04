@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'filmoteca',
+    'authentication'
 ]
 
 MIDDLEWARE = [
@@ -107,11 +108,13 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Argentina/Buenos_Aires'
 
 USE_I18N = True
 
-USE_TZ = True
+USE_L10N = True
+
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -127,3 +130,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Media config
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Login config
+LOGIN_URL = '/login'

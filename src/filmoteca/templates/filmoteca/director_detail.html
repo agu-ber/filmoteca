@@ -25,8 +25,9 @@
         <a href="{% url 'directores_editar' director.id %}">Editar</a>
         <a href="{% url 'directores_eliminar' director.id %}">Eliminar</a>
         <a href="{% url 'directores' %}">Regresar</a>
+        <p></p>
+        <p style="font-size: 11px">Creado el {{director.creado}}</p>
+        <p style="font-size: 11px">Actualizado el {{director.actualizado}}</p>
     </center>
 
-    <br>
-    
 {% endblock contenido %}
