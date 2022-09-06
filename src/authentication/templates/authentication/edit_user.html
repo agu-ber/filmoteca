@@ -1,0 +1,24 @@
+{% extends 'filmoteca/base.html' %}
+
+{% block titulo %}Filmoteca - Editar usuario{% endblock %}
+
+{% block header1 %}¡Bienvenido a mi Filmoteca!{% endblock %}
+
+{% block header2 %}Estás editando al usuario {{request.user.username}}{% endblock %}
+
+{% block contenido %}
+    
+    <br>
+    {% if error %}
+        <p style="color: darkblue">&#9679; {{error}}</p>
+    {% endif %}
+
+    <form method="post">{% csrf_token %}
+
+        {{form.as_p}}
+        <input type="submit" value="Editar usuario">
+
+    </form>
+
+{% endblock contenido %}
+    

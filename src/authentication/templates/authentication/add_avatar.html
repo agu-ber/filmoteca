@@ -1,0 +1,22 @@
+{% extends 'filmoteca/base.html' %}
+
+{% block titulo %}Filmoteca - Agregar avatar{% endblock %}
+
+{% block header1 %}¡Bienvenido a mi Filmoteca!{% endblock %}
+
+{% block header2 %}Estás editando al usuario {{request.user.username}}{% endblock %}
+
+{% block contenido %}
+    
+    <center>
+        <br>
+        <form method="post" enctype="multipart/form-data"> {% csrf_token %}
+
+            {{form.as_p}}
+            <input type="submit" value="Enviar">
+
+        </form>
+        <br>
+    </center>
+
+{% endblock contenido %}

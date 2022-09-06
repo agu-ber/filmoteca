@@ -1,15 +1,17 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
-from django.contrib.auth import login, logout, authenticate
+from django.contrib import messages
+from django.contrib.auth import login, logout, authenticate, update_session_auth_hash
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 
-from filmoteca.forms import UserRegisterForm
+from authentication.forms import *
+from authentication.models import *
 
 # Create your views here.
+
 
 def user_login(request):
 
@@ -22,7 +24,8 @@ def user_login(request):
 
         if form.is_valid():
             data = form.cleaned_data
-            usuario = authenticate(username=data.get("username"), password=data.get("password"))
+            usuario = authenticate(username=data.get(
+                "username"), password=data.get("password"))
 
             if usuario is not None:
                 login(request, usuario)
@@ -62,3 +65,66 @@ def user_register(request):
                 "error": "Formulario no válido"
             }
             return render(request, "authentication/register.html", context)
+
+
+@login_required
+def user_edit(request):
+
+    if request.method == "GET":
+        form = UserEditForm(initial={"first_name": request.user.first_name,
+                            "last_name": request.user.last_name, "email": request.user.email})
+
+        return render(request, "authentication/edit_user.html", {"form": form})
+
+    else:
+        form = UserEditForm(request.POST)
+
+        if form.is_valid():
+            data = form.cleaned_data
+            usuario = request.user
+
+            usuario.first_name = data["first_name"]
+            usuario.last_name = data["last_name"]
+            usuario.email = data["email"]
+            usuario.password1 = data["password1"]
+            usuario.password2 = data["password2"]
+
+            usuario.save()
+
+            return redirect("index")
+
+        else:
+            context = {
+                "form": form,
+                "error": "Formulario no válido"
+            }
+
+            return render(request, "authentication/edit_user.html", context)
+
+
+@login_required
+def add_avatar(request):
+
+    if request.method == "GET":
+        form = AvatarForm()
+        return render(request, "authentication/add_avatar.html", {"form": form})
+
+    else:
+        form = AvatarForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            data = form.cleaned_data
+            usuario = User.objects.filter(username=request.user.username).first()
+            avatar = Avatar(usuario=usuario, avatar=data["avatar"])
+
+            avatar.save()
+
+            return redirect("index")
+
+        else:
+            context = {
+                "form": form,
+                "error": "Formulario no válido"
+            }
+
+            return render(request, "authentication/add_avatar.html", context)

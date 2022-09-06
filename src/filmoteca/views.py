@@ -3,16 +3,21 @@ from django.http import HttpResponse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.decorators import login_required
 
 from filmoteca.models import *
 from filmoteca.forms import *
+from authentication.models import *
 
 # Create your views here.
 
 def index(request):
+    
+    if request.user.is_authenticated:
+        avatar = Avatar.objects.filter(usuario=request.user).first()
+        return render(request, 'filmoteca/index.html', {"avatar": avatar})
 
-    return render(request, 'filmoteca/index.html')
+    else:
+        return render(request, 'filmoteca/index.html')
 
 
 class PeliculaList(ListView):
