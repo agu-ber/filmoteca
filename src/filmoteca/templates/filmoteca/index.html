@@ -5,3 +5,19 @@
 {% block header1 %}¡Bienvenido a mi Filmoteca!{% endblock %}
 
 {% block header2 %}En esta web, encontrarás información sobre películas, directores y actores de la industria.{% endblock  %}
+
+{% block usuario %}
+    {% if request.user.is_authenticated %}
+
+        <p>Usuario: {{request.user.username}}</p>
+
+        {% if avatar != None %}
+            <img src="{{avatar.avatar.url}}" height="50px" width="50px">
+            <p></p>
+        {% endif %}
+
+        <p>Último login: {{request.user.last_login}}</p>
+
+    {% endif %}
+{% endblock %}
+    

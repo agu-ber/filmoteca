@@ -1,11 +1,15 @@
+from urllib import request
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from django.contrib import messages
-from django.contrib.auth import login, logout, authenticate, update_session_auth_hash
+from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from authentication.forms import *
 from authentication.models import *
@@ -91,7 +95,7 @@ def user_edit(request):
 
             usuario.save()
 
-            return redirect("index")
+            return redirect("profile")
 
         else:
             context = {
@@ -119,7 +123,7 @@ def add_avatar(request):
 
             avatar.save()
 
-            return redirect("index")
+            return redirect("profile")
 
         else:
             context = {
@@ -128,3 +132,17 @@ def add_avatar(request):
             }
 
             return render(request, "authentication/add_avatar.html", context)
+
+
+class DeleteAvatar(LoginRequiredMixin, DeleteView):
+
+    model = Avatar
+    success_url = "/profile"
+
+
+@login_required
+def profile(request):
+
+    usuario = request.user
+    avatar = Avatar.objects.filter(usuario=request.user).first()
+    return render(request, "authentication/profile.html", {"usuario": usuario, "avatar": avatar})

@@ -1,0 +1,37 @@
+{% extends 'filmoteca/base.html' %}
+
+{% block titulo %}Filmoteca - Ver usuario{% endblock %}
+
+{% block header1 %}¡Bienvenido a mi Filmoteca!{% endblock %}
+
+{% block header2 %}Estás viendo el perfil de {{usuario.username}}{% endblock %}
+
+{% block contenido %}
+    <center>
+        <br>
+        <p style="font-size: x-large">Usuario: {{usuario.username}}</p>
+        <p style="font-size: x-large">Avatar:</p>
+
+        {% if avatar != None %}
+            <img src="{{avatar.avatar.url}}" height="50px" width="50px">
+            <p></p>
+        {% endif %}
+
+        <p style="font-size: x-large">Email: {{usuario.email}}</p>
+        <p style="font-size: x-large">Nombre: {{usuario.first_name}}</p>
+        <p style="font-size: x-large">Apellido: {{usuario.last_name}}</p>
+        <p style="font-size: small">Se unió el {{usuario.date_joined}}</p>
+
+        <a href="{% url 'edit_user' %}">Editar datos</a>
+        
+        {% if avatar == None %}
+            <a href="{% url 'add_avatar' %}">Agregar avatar</a>
+        {% else %}
+            <a href="{% url 'delete_avatar' avatar.id %}">Eliminar avatar</a>
+        {% endif %}
+
+        <a href="{% url 'change_password' %}">Cambiar contraseña</a>
+    </center>
+    <br>
+{% endblock contenido %}
+    

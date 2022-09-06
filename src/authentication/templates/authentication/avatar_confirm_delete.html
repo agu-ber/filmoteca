@@ -1,0 +1,21 @@
+{% extends 'filmoteca/base.html' %}
+
+{% block titulo %}Filmoteca - Eliminar avatar{% endblock %}
+
+{% block header1 %}¡Bienvenido a mi Filmoteca!{% endblock %}
+
+{% block header2 %}Estás viendo el perfil de {{request.user.username}}{% endblock %}
+
+{% block contenido %}
+
+    <br>
+    <center>
+        <form method="post">{% csrf_token %}
+            <p>Estás por eliminar tu avatar. ¿Querés continuar?</p>
+            <input type="submit" value="Confirmar">
+            <a href="{% url 'profile' %}">Regresar</a>
+        </form>
+    </center>
+    <br>
+    
+{% endblock contenido %}

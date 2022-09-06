@@ -28,20 +28,7 @@
             <div class="container px-4 text-center">
                 <h1 class="fw-bolder">{% block header1 %}{% endblock %}</h1>
                 <p class="lead">{% block header2 %}{% endblock %}</p>
-
-                {% if request.user.is_authenticated %}
-
-                    <p>Usuario: {{request.user.username}}</p>
-
-                    {% if avatar != None %}
-                        <img src="{{avatar.avatar.url}}" height="50px" width="50px">
-                        <p></p>
-                    {% endif %}
-
-                    <p>Último login: {{request.user.last_login}}</p>
-
-                {% endif %}
-                    
+                {% block usuario %}{% endblock %}
             </div>
         </header>
         <!-- Content-->
