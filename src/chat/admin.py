@@ -1,6 +1,6 @@
 from django.contrib import admin
-from authentication.models import *
+from chat.models import *
 
 # Register your models here.
 
-admin.site.register(Avatar)
+admin.site.register(Mensaje)

@@ -1,4 +1,3 @@
-from csv import Dialect
 from django.contrib import admin
 from filmoteca.models import *
 

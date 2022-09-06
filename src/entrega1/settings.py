@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'filmoteca',
-    'authentication'
+    'authentication',
+    'chat',
 ]
 
 MIDDLEWARE = [

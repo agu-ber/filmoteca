@@ -1,0 +1,32 @@
+{% extends 'filmoteca/base.html' %}
+
+{% block titulo %}Filmoteca - Chat{% endblock %}
+
+{% block header1 %}¡Bienvenido a mi Filmoteca!{% endblock %}
+
+{% block header2 %}Interactuá con los demás usuarios{% endblock %}
+
+{% block contenido %}
+
+    <center>
+        <br>
+        <a href="{% url 'enviar_mensaje' %}">Enviar mensaje</a>
+    </center>
+    
+    {% if object_list %}
+
+    {% for mensaje in object_list %}
+        <p>&#9726; {{mensaje.usuario.username}}: {{mensaje.mensaje}} - {{mensaje.fecha}}</p>
+    {% endfor %}
+
+    {% else %}
+
+        <br>
+        <center>
+            <p>No hay mensajes aún</p>
+        </center>
+
+    {% endif %}
+
+{% endblock contenido %}
+    
