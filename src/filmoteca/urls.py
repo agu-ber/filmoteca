@@ -3,6 +3,7 @@ from filmoteca.views import *
 
 urlpatterns = [
     path('', index, name='index'),
+    path('about/', about, name='about'),
 
     path('peliculas/', PeliculaList.as_view(), name='peliculas'),
     path('peliculas/añadir/', PeliculaCreate.as_view(), name='peliculas_añadir'),

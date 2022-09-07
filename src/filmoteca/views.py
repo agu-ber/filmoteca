@@ -20,6 +20,11 @@ def index(request):
         return render(request, 'filmoteca/index.html')
 
 
+def about(request):
+
+    return render(request, "filmoteca/about.html")
+
+
 class PeliculaList(ListView):
 
     model = Pelicula

@@ -17,10 +17,23 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="{% url 'index' %}">Inicio</a>
-                <a class="navbar-brand" href="{% url 'peliculas' %}">Películas</a>
-                <a class="navbar-brand" href="{% url 'directores' %}">Directores</a>
-                <a class="navbar-brand" href="{% url 'actores' %}">Actores</a>
+                
+                {% if request.user.is_authenticated %}
+                    <a class="navbar-brand" href="{% url 'index' %}">Inicio</a>
+                    <a class="navbar-brand" href="{% url 'about' %}">About</a>
+                    <a class="navbar-brand" href="{% url 'peliculas' %}">Películas</a>
+                    <a class="navbar-brand" href="{% url 'directores' %}">Directores</a>
+                    <a class="navbar-brand" href="{% url 'actores' %}">Actores</a>
+                    <a class="navbar-brand" href="{% url 'chat' %}">Chat</a>
+                    <a class="navbar-brand" href="{% url 'profile' %}">Perfil</a>
+                    <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+                {% else %}
+                    <a class="navbar-brand" href="{% url 'index' %}">Inicio</a>
+                    <a class="navbar-brand" href="{% url 'about' %}">About</a>
+                    <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
+                    <a class="btn btn-primary" href="{% url 'register' %}">Sign up</a>
+                {% endif %}
+                    
             </div>
         </nav>
         <!-- Header-->

@@ -137,7 +137,7 @@ def add_avatar(request):
 class DeleteAvatar(LoginRequiredMixin, DeleteView):
 
     model = Avatar
-    success_url = "/profile"
+    success_url = "/accounts/profile"
 
 
 @login_required
